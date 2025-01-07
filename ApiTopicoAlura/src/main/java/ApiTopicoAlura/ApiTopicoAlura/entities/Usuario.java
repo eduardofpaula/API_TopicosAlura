@@ -14,10 +14,11 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Usuario {
+public class Usuario{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Long id;
 
     @Column(name = "nome_usuario", nullable = false, length = 300)
@@ -27,11 +28,12 @@ public class Usuario {
     private String email;
 
     @Column(name = "senha", nullable = false, length = 300)
-    private String senha;
+    private String password;
 
     @ManyToMany
     @JoinTable(name = "usuario_perfil", schema = "apitopico",
             joinColumns = @JoinColumn(name = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "id_perfil"))
     private List<Perfil> perfil;
+
 }

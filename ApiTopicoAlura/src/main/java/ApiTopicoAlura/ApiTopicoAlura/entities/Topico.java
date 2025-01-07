@@ -1,13 +1,10 @@
 package ApiTopicoAlura.ApiTopicoAlura.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "topico", schema = "apitopico")
@@ -19,6 +16,7 @@ public class Topico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_topico", nullable = false)
     private Long id;
 
     @Column(name = "titulo", nullable = false, length = 300)
@@ -41,8 +39,17 @@ public class Topico {
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
-    @ManyToOne
-    @JoinColumn(name = "id_resposta", nullable = false)
-    private Resposta[] resposta;
+    @OneToMany(mappedBy = "topico")
+    private List<Resposta> resposta;
+
+    public Topico(Long id, String titulo, String mensagem, LocalDate dataCriacao, int status, Usuario usuario, Curso curso) {
+        this.id = id;
+        this.titulo = titulo;
+        this.mensagem = mensagem;
+        this.dataCriacao = dataCriacao;
+        this.status = status;
+        this.usuario = usuario;
+        this.curso = curso;
+    }
 
 }
