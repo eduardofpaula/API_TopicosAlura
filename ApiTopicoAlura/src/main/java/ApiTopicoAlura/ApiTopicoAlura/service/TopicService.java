@@ -1,5 +1,6 @@
 package ApiTopicoAlura.ApiTopicoAlura.service;
 
+import ApiTopicoAlura.ApiTopicoAlura.DTO.listTopics.ResponseTopicDTO;
 import ApiTopicoAlura.ApiTopicoAlura.entities.Curso;
 import ApiTopicoAlura.ApiTopicoAlura.entities.Topico;
 import ApiTopicoAlura.ApiTopicoAlura.entities.Usuario;
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TopicService {
@@ -57,5 +60,21 @@ public class TopicService {
         );
 
         topicoRepository.save(topico);
+    }
+
+    @Operation(summary = "List all topics", description = "List all topics in the database")
+    public List<ResponseTopicDTO> listAllTopics() {
+
+        return topicoRepository.findAll().stream()
+                .map(topico -> new ResponseTopicDTO(
+                        topico.getId(),
+                        topico.getTitulo(),
+                        topico.getMensagem(),
+                        topico.getDataCriacao(),
+                        topico.getStatus(),
+                        topico.getCurso().getId(),
+                        topico.getUsuario().getId()
+                )).collect(Collectors.toList());
+
     }
 }

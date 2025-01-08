@@ -1,10 +1,6 @@
 package ApiTopicoAlura.ApiTopicoAlura.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,10 +10,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "usuario", schema = "apitopico")
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 public class Usuario implements UserDetails {
 
     @Id
@@ -39,6 +31,46 @@ public class Usuario implements UserDetails {
             joinColumns = @JoinColumn(name = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "id_perfil"))
     private List<Perfil> perfil;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public List<Perfil> getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(List<Perfil> perfil) {
+        this.perfil = perfil;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
