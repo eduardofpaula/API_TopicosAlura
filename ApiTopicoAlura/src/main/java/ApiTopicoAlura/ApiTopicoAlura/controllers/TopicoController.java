@@ -1,6 +1,7 @@
 package ApiTopicoAlura.ApiTopicoAlura.controllers;
 
 
+import ApiTopicoAlura.ApiTopicoAlura.DTO.AttTopic.RequestAttTopicDTO;
 import ApiTopicoAlura.ApiTopicoAlura.DTO.insertTopic.RequestInsert;
 import ApiTopicoAlura.ApiTopicoAlura.DTO.listTopics.ResponseTopicDTO;
 import ApiTopicoAlura.ApiTopicoAlura.service.TopicService;
@@ -36,5 +37,17 @@ public class TopicoController {
     @GetMapping("/id")
     public ResponseEntity<ResponseTopicDTO> getTopiById(@RequestParam @Valid Long id) {
         return ResponseEntity.ok().body(topicService.listTopicById(id));
+    }
+
+    @PutMapping()
+    public ResponseEntity<Map<String,String>> updateTopic(@RequestBody RequestAttTopicDTO requestAttTopicDTO) {
+        topicService.updateTopic(requestAttTopicDTO);
+        return new ResponseEntity<>(Map.of("message","Tópico atualizado com Sucesso"), HttpStatus.OK);
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<Map<String,String>> deleteTopic(@RequestParam @Valid Long id) {
+        topicService.deleteTopic(id);
+        return new ResponseEntity<>(Map.of("message","Tópico deletado com Sucesso"), HttpStatus.OK);
     }
 }
