@@ -135,7 +135,6 @@ public class TopicService {
             throw new IllegalArgumentException("Topic not found");
         }
 
-        topicoRepository.deleteById(id);
-
+        topico.get().setStatus(0);
     }
 }
