@@ -4,6 +4,7 @@ package ApiTopicoAlura.ApiTopicoAlura.controllers;
 import ApiTopicoAlura.ApiTopicoAlura.DTO.insertTopic.RequestInsert;
 import ApiTopicoAlura.ApiTopicoAlura.DTO.listTopics.ResponseTopicDTO;
 import ApiTopicoAlura.ApiTopicoAlura.service.TopicService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,5 +31,10 @@ public class TopicoController {
     @GetMapping
     public ResponseEntity<List<ResponseTopicDTO>> getAllTopics() {
         return ResponseEntity.ok().body(topicService.listAllTopics());
+    }
+
+    @GetMapping("/id")
+    public ResponseEntity<ResponseTopicDTO> getTopiById(@RequestParam @Valid Long id) {
+        return ResponseEntity.ok().body(topicService.listTopicById(id));
     }
 }

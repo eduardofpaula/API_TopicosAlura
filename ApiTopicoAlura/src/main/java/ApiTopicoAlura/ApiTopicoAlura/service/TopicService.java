@@ -77,4 +77,19 @@ public class TopicService {
                 )).collect(Collectors.toList());
 
     }
+
+    public ResponseTopicDTO listTopicById(Long id) {
+
+        Topico topico = topicoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Topic not found"));
+
+        return new ResponseTopicDTO(
+                topico.getId(),
+                topico.getTitulo(),
+                topico.getMensagem(),
+                topico.getDataCriacao(),
+                topico.getStatus(),
+                topico.getCurso().getId(),
+                topico.getUsuario().getId()
+        );
+    }
 }

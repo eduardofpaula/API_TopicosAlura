@@ -1,12 +1,17 @@
 package ApiTopicoAlura.ApiTopicoAlura.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "topico", schema = "apitopico")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Topico {
 
     @Id
@@ -37,11 +42,6 @@ public class Topico {
     @OneToMany(mappedBy = "topico")
     private List<Resposta> resposta;
 
-    // Construtor padrão
-    public Topico() {
-    }
-
-    // Construtor completo
     public Topico(Long id, String titulo, String mensagem, LocalDate dataCriacao, int status, Usuario usuario, Curso curso) {
         this.id = id;
         this.titulo = titulo;
@@ -52,69 +52,6 @@ public class Topico {
         this.curso = curso;
     }
 
-    // Getters e Setters
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getMensagem() {
-        return mensagem;
-    }
-
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
-    }
-
-    public LocalDate getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDate dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public List<Resposta> getResposta() {
-        return resposta;
-    }
-
-    public void setResposta(List<Resposta> resposta) {
-        this.resposta = resposta;
-    }
 }
-
