@@ -46,7 +46,7 @@ Remove o tópico de curso com o id informado.
   "id": 1,
   "titulo": "Java",
   "mensagem": "Dúvidas sobre Java",
-  "dataCriacao": "2021-07-01T18:00:00"
+  "dataCriacao": "2021-07-01"
 }
 ```
 
