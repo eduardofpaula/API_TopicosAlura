@@ -13,7 +13,7 @@ public interface TopicoRepository extends JpaRepository<Topico, Long> {
 
     boolean existsByTituloOrMensagem(String titulo, String mensagem);
 
-    @Query("select d from Topico d where d.status = 1 order by NLSSORT(d.titulo, 'NLS_SORT = BINARY_AI') ASC")
+    @Query("select d from Topico d where d.status = 1 order by d.status asc ")
     List<Topico> findAllByStatus();
 }
 
